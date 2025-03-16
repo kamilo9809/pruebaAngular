@@ -5,12 +5,13 @@ import { AuthService } from '../../services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoadingService } from '../../../../shared/services/loading.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { SignalsService } from '../../../../shared/services/signals.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [LoadingComponent,CommonModule,HttpClientModule,ReactiveFormsModule],
+  imports: [LoadingComponent,CommonModule,HttpClientModule,ReactiveFormsModule,RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
   providers:[AuthService]
@@ -20,6 +21,7 @@ export default class RegisterComponent {
   private readonly fb = inject(FormBuilder)
   private readonly loading = inject(LoadingService)
   private readonly router = inject(Router)
+  private readonly signalsServices = inject(SignalsService)
 
   registerForm: FormGroup
   loadpage = this.loading.isloading()
